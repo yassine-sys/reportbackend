@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,6 +17,8 @@ public class Module implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @NotNull
+
     private Long id;
 
     private String moduleName;

@@ -13,5 +13,5 @@ public interface SubModuleService {
 
     SubModule findById(Long Id);
 
-    SubModule editSubModule(SubModule subModule,Long Id);
+    SubModule editSubModule(Long Id,SubModule subModule);
 }

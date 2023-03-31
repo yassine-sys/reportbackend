@@ -33,9 +33,11 @@ public class FunctionController {
     }
 
     @PutMapping("/edit/{id}")
-    public ResponseEntity<String> updateFunction(@PathVariable("id") long id, @RequestBody Function function) {
-        funcService.updateFunction(id, function);
-        return ResponseEntity.ok("function updated successfully");
+    public ResponseEntity<Function> updateFunction(@PathVariable("id") long id, @RequestBody Function function) {
+
+        Function updatedFunction=funcService.updateFunction(id, function);
+
+        return ResponseEntity.ok(updatedFunction);
     }
 
 }

@@ -39,13 +39,15 @@ public class FunctionServiceImp implements FunctionService{
     }
 
     @Override
-    public Function updateFunction(long id, Function function){
-        Optional<Function> optionalFunction = funcRepo.findById(id);
-        if (!optionalFunction.isPresent()) {
-            throw new ResourceNotFoundException("Function not found with id: " + id);
-        }
-        function.setId(id);
-        return funcRepo.save(function);
+    public Function updateFunction(long id, Function function) throws ResourceNotFoundException{
 
+        Function function1=funcRepo.findById(id).orElseThrow(() -> new ResourceNotFoundException("function not found for this id :: " + id));
+        function1.setFunctionName(function.getFunctionName());
+        function1.setGroup(function.getGroup());
+        function1.setSubModule(function.getSubModule());
+
+        final Function updatedFunction = funcRepo.save(function1);
+
+        return updatedFunction;
     }
 }

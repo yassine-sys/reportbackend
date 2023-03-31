@@ -18,12 +18,21 @@ public class Function implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sub_module_id")
-    @JsonBackReference
     private SubModule subModule;
 
     @ManyToMany(mappedBy = "liste_function",cascade = { CascadeType.MERGE, CascadeType.PERSIST }, fetch = FetchType.LAZY)
     @JsonIgnore
     private List<Group> group;
+
+    public Function(Long id, String functionName, SubModule subModule, List<Group> group) {
+        this.id = id;
+        this.functionName = functionName;
+        this.subModule = subModule;
+        this.group = group;
+    }
+
+    public Function() {
+    }
 
     public Long getId() {
         return id;
@@ -56,4 +65,6 @@ public class Function implements Serializable {
     public void setSubModule(SubModule subModule) {
         this.subModule = subModule;
     }
+
+
 }

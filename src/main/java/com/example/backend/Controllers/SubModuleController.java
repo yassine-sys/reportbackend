@@ -1,5 +1,6 @@
 package com.example.backend.Controllers;
 
+import com.example.backend.entities.Function;
 import com.example.backend.entities.Module;
 import com.example.backend.entities.SubModule;
 import com.example.backend.services.ModuleService;
@@ -40,14 +41,9 @@ public class SubModuleController {
         return subModuleService.findById(id);
     }
 
-    @RequestMapping(value="/edit/{id}",method= RequestMethod.PUT,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> editSubModule(@RequestBody SubModule subModule, @PathVariable Long id){
-        System.out.println(subModule.getSubModuleName());
-        if (subModule==null){
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }else {
-            subModuleService.editSubModule(subModule,id);
-            return new ResponseEntity<>(subModule,HttpStatus.OK);
-        }
+    @PutMapping("/edit/{id}")
+    public ResponseEntity<SubModule> updateSubModule(@PathVariable("id") long id, @RequestBody SubModule subModule) {
+        SubModule updatedSubmodule=subModuleService.editSubModule(id, subModule);
+        return ResponseEntity.ok(updatedSubmodule);
     }
 }

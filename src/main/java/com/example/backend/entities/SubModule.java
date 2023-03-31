@@ -30,8 +30,7 @@ public class SubModule  implements Serializable {
     private Module Module;
 
     @Column(name = "function",unique = true)
-    @OneToMany(mappedBy = "subModule",orphanRemoval = true, cascade = {CascadeType.PERSIST ,CascadeType.MERGE,CascadeType.DETACH})
-    @JsonManagedReference
+    @OneToMany(mappedBy = "subModule", cascade = {CascadeType.PERSIST ,CascadeType.MERGE,CascadeType.DETACH})
     private List<Function> functions;
 
 
